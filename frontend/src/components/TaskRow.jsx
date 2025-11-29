@@ -4,13 +4,13 @@ const TaskRow = React.memo(({ task }) => {
   const getStatusStyle = (status) => {
     switch (status) {
       case 'To do':
-        return { backgroundColor: '#dc3545', color: 'white' };
+        return { backgroundColor: '#dc3545' };
       case 'Doing':
-        return { backgroundColor: '#ffc107', color: 'black' }; 
+        return { backgroundColor: '#ffc107' }; 
       case 'Done':
-        return { backgroundColor: '#198754', color: 'white' }; 
+        return { backgroundColor: '#198754' }; 
       default:
-        return { backgroundColor: '#6c757d', color: 'white' };
+        return { backgroundColor: '#6c757d' };
     }
   };
 
