@@ -13,7 +13,7 @@ export default function useTasks() {
       })
       .catch((err) => console.error("Errore nel recupero lista", err));
   }, [apiUrl]);
-
+  //ADDTASK  /*  */
   const addTask = async (newTask) => {
     const response = await fetch(`${apiUrl}/tasks`, {
       method: "POST",
@@ -25,9 +25,15 @@ export default function useTasks() {
     if (!success) throw new Error(message);
     setTasks((prev) => [...prev, task]);
   };
-
-  const removeTask = () => {
-    //effettua operazione
+  // REMOVETASK /*  */
+  const removeTask = async (taskId) => {
+    const response = await fetch(`${apiUrl}/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+    const { success, message } = await response.json();
+    if (!success) throw new Error(message);
+    
+    setTasks((prev) => prev.filter((t) => t.id !== taskId));
   };
 
   const updateTask = () => {

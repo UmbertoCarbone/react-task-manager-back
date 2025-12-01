@@ -1,10 +1,13 @@
 import { useState, useRef, useMemo, useContext } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
+import { useNavigate } from "react-router-dom";
+
 export default function AddTask() {
   const [title, setTitle] = useState("");
   const descriptionRef = useRef(null);
   const statusRef = useRef(null);
   const { addTask } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
@@ -29,8 +32,9 @@ export default function AddTask() {
       setTitle("");
       descriptionRef.current.value = "";
       statusRef.current.value = "";
+      navigate("/")
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
   };
 
