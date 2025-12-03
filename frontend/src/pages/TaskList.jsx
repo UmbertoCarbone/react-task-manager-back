@@ -24,11 +24,11 @@ export default function TaskList() {
   };
 
   // MILESTONE 12: Funzione debounce ottimizzata con useCallback
-  // Ritarda l'aggiornamento di searchQuery di 500ms dopo che l'utente smette di digitare
+  // Ritarda l'aggiornamento di searchQuery di 1000ms dopo che l'utente smette di digitare
   const debouncedSearch = useCallback(() => {
     const timer = setTimeout(() => {
       setSearchQuery(search);
-    }, 500);
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, [search]);
@@ -71,7 +71,7 @@ export default function TaskList() {
           type="text" 
           className="form-control"
           placeholder="Cerca task..."
-          value={search}
+          
           onChange={(e) => setSearch(e.target.value)}
         />
         {/* MILESTONE 12: Mostra risultati della ricerca */}
