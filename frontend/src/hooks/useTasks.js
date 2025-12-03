@@ -32,12 +32,20 @@ export default function useTasks() {
     });
     const { success, message } = await response.json();
     if (!success) throw new Error(message);
-    
+
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
   };
-
-  const updateTask = () => {
+  const updateTask = async (updateTask) => {
     //effettua operazione
+    const response = await fetch(`${apiUrl}/tasks/${updateTask.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updateTask),
+    });
+    const { success, message, task } = await response.json();
+    if (!success) throw new Error(message);
+
+    setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
   };
   return { tasks, addTask, removeTask, updateTask };
 }
